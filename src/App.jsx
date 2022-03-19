@@ -1,11 +1,12 @@
 import { Routes, Route } from 'react-router-dom'
-
-import Home from './pages/Home'
+import dashboard from './config/dashboard'
 
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      {dashboard.map(({ route, navigation }) => (
+        <Route {...route} key={navigation.name} />
+      ))}
     </Routes>
   )
 }
