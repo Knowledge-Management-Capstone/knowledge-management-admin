@@ -5,17 +5,22 @@ import {
   SaveIcon
 } from '@heroicons/react/outline'
 
+import Home from '../pages/Home'
+import Researcher from '../pages/Researcher'
+import Research from '../pages/Research'
+import Request from '../pages/Request'
+
 const dashboard = [
   {
-    route: {},
+    route: { path: '/', element: <Home /> },
     navigation: { name: 'Beranda', path: '/', icon: HomeIcon }
   },
   {
-    route: {},
+    route: { path: '/researcher', element: <Researcher /> },
     navigation: { name: 'Peneliti', path: '/researcher', icon: UserGroupIcon }
   },
   {
-    route: {},
+    route: { path: '/research', element: <Research /> },
     navigation: {
       name: 'Penelitian',
       path: '/research',
@@ -23,7 +28,7 @@ const dashboard = [
     }
   },
   {
-    route: {},
+    route: { path: '/request', element: <Request /> },
     navigation: { name: 'Permintaan', path: '/request', icon: SaveIcon }
   }
 ]
