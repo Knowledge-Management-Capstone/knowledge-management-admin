@@ -7,8 +7,24 @@ import {
   RESEARCHER_DELETE_SUCCESS,
   RESEARCHER_EDIT_FAIL,
   RESEARCHER_EDIT_REQUEST,
-  RESEARCHER_EDIT_SUCCESS
+  RESEARCHER_EDIT_SUCCESS,
+  RESEARCHER_LIST_FAIL,
+  RESEARCHER_LIST_REQUEST,
+  RESEARCHER_LIST_SUCCESS
 } from '../constants/researcherConstants.js'
+
+export const researcherListReducer = (state = { researchers: [] }, action) => {
+  switch (action.type) {
+    case RESEARCHER_LIST_REQUEST:
+      return { loading: true, researchers: [] }
+    case RESEARCHER_LIST_SUCCESS:
+      return { loading: false, researchers: action.payload }
+    case RESEARCHER_LIST_FAIL:
+      return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+}
 
 export const researcherApproveReducer = (state = {}, action) => {
   switch (action.type) {
