@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import MySwal from '../../utils/sweetalert.js'
 import {
   USER_LOGIN_FAIL,
   USER_LOGIN_REQUEST,
@@ -22,6 +22,11 @@ export const login = (email, password) => async dispatch => {
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message
+    })
+    MySwal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: error.response.data.message
     })
   }
 }
