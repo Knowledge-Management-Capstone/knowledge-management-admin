@@ -1,4 +1,4 @@
-import UserTableItem from './UserTableItem'
+import ResearcherTableItem from './ResearcherTableItem'
 
 const people = [
   {
@@ -50,7 +50,7 @@ const UserTable = () => {
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
                   {people.map(person => (
-                    <UserTableItem person={person} />
+                    <ResearcherTableItem person={person} />
                   ))}
                 </tbody>
               </table>
