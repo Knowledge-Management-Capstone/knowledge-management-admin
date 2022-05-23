@@ -8,10 +8,13 @@ const ResearcherTable = () => {
   const dispatch = useDispatch()
 
   const { researchers } = useSelector(state => state.researcherList)
+  const { success: successApprove } = useSelector(
+    state => state.researcherApprove
+  )
 
   useEffect(() => {
     dispatch(researcherList())
-  }, [dispatch])
+  }, [dispatch, successApprove])
 
   return (
     <div className="px-4 sm:px-6 lg:px-8">
