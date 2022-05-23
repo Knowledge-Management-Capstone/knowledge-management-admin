@@ -7,11 +7,11 @@ import {
   RESEARCHER_LIST_SUCCESS
 } from '../constants/researcherConstants'
 
-export const reseaercherList = () => async dispatch => {
+export const researcherList = () => async dispatch => {
   try {
     dispatch({ type: RESEARCHER_LIST_REQUEST })
 
-    const { data } = await axios.post('/api/users')
+    const { data } = await axios.get('/api/users')
 
     dispatch({ type: RESEARCHER_LIST_SUCCESS, payload: data })
   } catch (error) {
@@ -25,7 +25,10 @@ export const reseaercherList = () => async dispatch => {
     MySwal.fire({
       icon: 'error',
       title: 'Oops...',
-      text: error.response.data.messagesss
+      text:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
     })
   }
 }

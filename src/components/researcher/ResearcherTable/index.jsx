@@ -1,4 +1,8 @@
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import ResearcherTableItem from './ResearcherTableItem'
+
+import { researcherList } from '../../../store/actions/researcherActions'
 
 const people = [
   {
@@ -10,6 +14,12 @@ const people = [
 ]
 
 const ResearcherTable = () => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(researcherList())
+  })
+
   return (
     <div className="px-4 sm:px-6 lg:px-8">
       <div className="mt-8 flex flex-col">
@@ -50,7 +60,7 @@ const ResearcherTable = () => {
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
                   {people.map(person => (
-                    <ResearcherTableItem person={person} />
+                    <ResearcherTableItem person={person} key={person.name} />
                   ))}
                 </tbody>
               </table>

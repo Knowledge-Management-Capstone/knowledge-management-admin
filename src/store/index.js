@@ -11,7 +11,11 @@ import {
 } from './reducers/researcherReducers'
 
 const reducer = combineReducers({
-  userLogin: userLoginReducer
+  userLogin: userLoginReducer,
+  researcherList: researcherListReducer,
+  researcherApprove: researcherApproveReducer,
+  researcherEdit: researcherEditReducer,
+  researcherDelete: researcherDeleteReducer
 })
 
 const userFromStorage = localStorage.getItem('user')
@@ -19,11 +23,7 @@ const userFromStorage = localStorage.getItem('user')
   : null
 
 const initialState = {
-  userLogin: { user: userFromStorage },
-  researcherList: researcherListReducer,
-  researcherApprove: researcherApproveReducer,
-  researcherEdit: researcherEditReducer,
-  researcherDelete: researcherDeleteReducer
+  userLogin: { user: userFromStorage }
 }
 
 const middleware = [thunk]
