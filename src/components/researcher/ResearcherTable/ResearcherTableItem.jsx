@@ -2,7 +2,10 @@ import { useDispatch } from 'react-redux'
 import clsx from 'clsx'
 import { CheckIcon, PencilAltIcon, TrashIcon } from '@heroicons/react/outline'
 
-import { approveResearcher } from '../../../store/actions/researcherActions'
+import {
+  approveResearcher,
+  deleteResearcher
+} from '../../../store/actions/researcherActions'
 
 const UserTableItem = ({ researcher }) => {
   const dispatch = useDispatch()
@@ -11,7 +14,9 @@ const UserTableItem = ({ researcher }) => {
     dispatch(approveResearcher(researcherId))
   }
   const handleEdit = () => {}
-  const handleDelete = () => {}
+  const handleDelete = researcherId => {
+    dispatch(deleteResearcher(researcherId))
+  }
 
   return (
     <tr key={researcher.email}>
@@ -53,7 +58,7 @@ const UserTableItem = ({ researcher }) => {
         />
         <TrashIcon
           className="h-6 w-6 text-red-500 hover:cursor-pointer hover:text-red-700 hover:bg-black hover:bg-opacity-10"
-          onClick={handleDelete}
+          onClick={() => handleDelete(researcher._id)}
         />
       </td>
     </tr>
