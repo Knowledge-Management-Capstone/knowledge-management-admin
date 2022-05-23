@@ -5,6 +5,9 @@ import {
   RESEARCHER_APPROVE_FAIL,
   RESEARCHER_APPROVE_REQUEST,
   RESEARCHER_APPROVE_SUCCESS,
+  RESEARCHER_DELETE_FAIL,
+  RESEARCHER_DELETE_REQUEST,
+  RESEARCHER_DELETE_SUCCESS,
   RESEARCHER_LIST_FAIL,
   RESEARCHER_LIST_REQUEST,
   RESEARCHER_LIST_SUCCESS
@@ -40,9 +43,9 @@ export const approveResearcher = researcherId => async dispatch => {
   try {
     dispatch({ type: RESEARCHER_APPROVE_REQUEST })
 
-    const { data } = await axios.put(`/api/users/${researcherId}/approve`)
+    await axios.put(`/api/users/${researcherId}/approve`)
 
-    dispatch({ type: RESEARCHER_APPROVE_SUCCESS, payload: data })
+    dispatch({ type: RESEARCHER_APPROVE_SUCCESS })
     MySwal.fire({
       icon: 'success',
       title: 'Success',
@@ -51,6 +54,32 @@ export const approveResearcher = researcherId => async dispatch => {
   } catch (error) {
     dispatch({
       type: RESEARCHER_APPROVE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+    })
+    MySwal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+    })
+  }
+}
+
+export const deleteResearcher = researcherId => async dispatch => {
+  try {
+    dispatch({ type: RESEARCHER_DELETE_REQUEST })
+
+    await axios.delete(`/api/users/${researcherId}`)
+
+    dispatch({ type: RESEARCHER_DELETE_SUCCESS })
+  } catch (error) {
+    dispatch({
+      type: RESEARCHER_DELETE_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
