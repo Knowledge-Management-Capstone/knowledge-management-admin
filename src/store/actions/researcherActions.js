@@ -40,7 +40,7 @@ export const approveResearcher = researcherId => async dispatch => {
   try {
     dispatch({ type: RESEARCHER_APPROVE_REQUEST })
 
-    const { data } = await axios.post(`/api/users/${researcherId}/approve`)
+    const { data } = await axios.put(`/api/users/${researcherId}/approve`)
 
     dispatch({ type: RESEARCHER_APPROVE_SUCCESS, payload: data })
     MySwal.fire({

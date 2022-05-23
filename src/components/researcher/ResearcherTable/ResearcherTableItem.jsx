@@ -1,8 +1,15 @@
+import { useDispatch } from 'react-redux'
 import clsx from 'clsx'
 import { CheckIcon, PencilAltIcon, TrashIcon } from '@heroicons/react/outline'
 
+import { approveResearcher } from '../../../store/actions/researcherActions'
+
 const UserTableItem = ({ researcher }) => {
-  const handleApprove = () => {}
+  const dispatch = useDispatch()
+
+  const handleApprove = researcherId => {
+    dispatch(approveResearcher(researcherId))
+  }
   const handleEdit = () => {}
   const handleDelete = () => {}
 
@@ -37,7 +44,7 @@ const UserTableItem = ({ researcher }) => {
         {!researcher.isApproved && (
           <CheckIcon
             className="h-6 w-6 text-green-500 hover:cursor-pointer hover:text-green-700 hover:bg-black hover:bg-opacity-10"
-            onClick={handleApprove}
+            onClick={() => handleApprove(researcher._id)}
           />
         )}
         <PencilAltIcon
