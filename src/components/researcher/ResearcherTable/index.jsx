@@ -9,7 +9,7 @@ const people = [
   }
 ]
 
-const UserTable = () => {
+const ResearcherTable = () => {
   return (
     <div className="px-4 sm:px-6 lg:px-8">
       <div className="mt-8 flex flex-col">
@@ -62,4 +62,4 @@ const UserTable = () => {
   )
 }
 
-export default UserTable
+export default ResearcherTable
