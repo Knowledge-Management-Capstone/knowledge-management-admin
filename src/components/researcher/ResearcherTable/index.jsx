@@ -1,24 +1,17 @@
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import ResearcherTableItem from './ResearcherTableItem'
 
 import { researcherList } from '../../../store/actions/researcherActions'
 
-const people = [
-  {
-    name: 'Lindsay Walton',
-    title: 'Front-end Developer',
-    email: 'lindsay.walton@example.com',
-    role: 'Member'
-  }
-]
-
 const ResearcherTable = () => {
   const dispatch = useDispatch()
 
+  const { researchers } = useSelector(state => state.researcherList)
+
   useEffect(() => {
     dispatch(researcherList())
-  })
+  }, [dispatch])
 
   return (
     <div className="px-4 sm:px-6 lg:px-8">
@@ -39,12 +32,6 @@ const ResearcherTable = () => {
                       scope="col"
                       className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
                     >
-                      Title
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
-                    >
                       Email
                     </th>
                     <th
@@ -53,15 +40,34 @@ const ResearcherTable = () => {
                     >
                       Role
                     </th>
-                    <th scope="col" className="relative py-3 pl-3 pr-4 sm:pr-6">
-                      <span className="sr-only">Edit</span>
+                    <th
+                      scope="col"
+                      className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                    >
+                      Major
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                    >
+                      Status
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-3 py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                    >
+                      Actions
                     </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
-                  {people.map(person => (
-                    <ResearcherTableItem person={person} key={person.name} />
-                  ))}
+                  {researchers &&
+                    researchers.map(researcher => (
+                      <ResearcherTableItem
+                        researcher={researcher}
+                        key={researcher._id}
+                      />
+                    ))}
                 </tbody>
               </table>
             </div>
