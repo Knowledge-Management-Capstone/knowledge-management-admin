@@ -18,8 +18,8 @@ const reducer = combineReducers({
   researcherDelete: researcherDeleteReducer
 })
 
-const userFromStorage = localStorage.getItem('user')
-  ? JSON.parse(localStorage.getItem('user'))
+const userFromStorage = localStorage.getItem('user-admin')
+  ? JSON.parse(localStorage.getItem('user-admin'))
   : null
 
 const initialState = {
