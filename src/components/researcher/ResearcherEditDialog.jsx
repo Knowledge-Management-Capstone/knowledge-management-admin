@@ -7,6 +7,8 @@ import Dialog from '../common/Dialog'
 import BaseInput from '../generic/form/input/BaseInput'
 import BaseSelect from '../generic/form/input/BaseSelect'
 
+import { updateResearcher } from '../../store/actions/researcherActions'
+
 const ResearcherEditDialog = ({ researcher }) => {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
@@ -15,7 +17,9 @@ const ResearcherEditDialog = ({ researcher }) => {
 
   const handleSubmit = (values, { setSubmitting }) => {
     const { fullName, email, userId, faculty, major, accountType } = values
-    dispatch()
+    dispatch(
+      updateResearcher({ fullName, email, userId, faculty, major, accountType })
+    )
 
     setSubmitting(false)
     setOpen(false)
