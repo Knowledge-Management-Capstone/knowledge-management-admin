@@ -80,6 +80,11 @@ export const updateResearcher = (researcherId, data) => async dispatch => {
     await axios.put(`/api/users/${researcherId}`, data)
 
     dispatch({ type: RESEARCHER_EDIT_SUCCESS })
+    MySwal.fire({
+      icon: 'success',
+      title: 'Success',
+      text: 'User Updated'
+    })
   } catch (error) {
     dispatch({
       type: RESEARCHER_EDIT_FAIL,
