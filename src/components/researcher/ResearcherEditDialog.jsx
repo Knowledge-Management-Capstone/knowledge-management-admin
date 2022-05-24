@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
@@ -9,8 +8,7 @@ import BaseSelect from '../generic/form/input/BaseSelect'
 
 import { updateResearcher } from '../../store/actions/researcherActions'
 
-const ResearcherEditDialog = ({ researcher }) => {
-  const [open, setOpen] = useState(false)
+const ResearcherEditDialog = ({ researcher, open, setOpen }) => {
   const dispatch = useDispatch()
 
   const { fullName, email, userId, faculty, major, accountType } = researcher
