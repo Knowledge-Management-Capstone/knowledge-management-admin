@@ -8,6 +8,9 @@ import {
   RESEARCHER_DELETE_FAIL,
   RESEARCHER_DELETE_REQUEST,
   RESEARCHER_DELETE_SUCCESS,
+  RESEARCHER_EDIT_FAIL,
+  RESEARCHER_EDIT_REQUEST,
+  RESEARCHER_EDIT_SUCCESS,
   RESEARCHER_LIST_FAIL,
   RESEARCHER_LIST_REQUEST,
   RESEARCHER_LIST_SUCCESS
@@ -54,6 +57,32 @@ export const approveResearcher = researcherId => async dispatch => {
   } catch (error) {
     dispatch({
       type: RESEARCHER_APPROVE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+    })
+    MySwal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+    })
+  }
+}
+
+export const updateResearcher = (researcherId, data) => async dispatch => {
+  try {
+    dispatch({ type: RESEARCHER_EDIT_REQUEST })
+
+    await axios.put(`/api/users/${researcherId}`, data)
+
+    dispatch({ type: RESEARCHER_EDIT_SUCCESS })
+  } catch (error) {
+    dispatch({
+      type: RESEARCHER_EDIT_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
