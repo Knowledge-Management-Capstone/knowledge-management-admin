@@ -3,7 +3,7 @@ import axios from 'axios'
 axios.defaults.baseURL = process.env.REACT_APP_BASE_URL
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 
-const user = localStorage.getItem('user')
+const user = localStorage.getItem('user-admin')
 
 if (user) {
   const { token } = JSON.parse(user)
