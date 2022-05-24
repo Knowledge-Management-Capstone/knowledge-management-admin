@@ -44,7 +44,7 @@ export const researcherEditReducer = (state = {}, action) => {
     case RESEARCHER_DELETE_REQUEST:
       return { loading: true }
     case RESEARCHER_DELETE_SUCCESS:
-      return { loading: false, researcher: action.payload }
+      return { loading: false, success: true }
     case RESEARCHER_DELETE_FAIL:
       return { loading: false, error: action.payload }
     default:
@@ -57,7 +57,7 @@ export const researcherDeleteReducer = (state = {}, action) => {
     case RESEARCHER_EDIT_REQUEST:
       return { loading: true }
     case RESEARCHER_EDIT_SUCCESS:
-      return { loading: false, researcher: action.payload }
+      return { loading: false, success: true }
     case RESEARCHER_EDIT_FAIL:
       return { loading: false, researcher: action.payload }
     default:
