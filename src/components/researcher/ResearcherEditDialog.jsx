@@ -34,7 +34,16 @@ const ResearcherEditDialog = ({ researcher, open, setOpen }) => {
           major,
           accountType
         }}
-        validationSchema={Yup.object({})}
+        validationSchema={Yup.object({
+          fullName: Yup.string().required('Required'),
+          email: Yup.string()
+            .email('Invalid email address')
+            .required('Required'),
+          userId: Yup.string().required('Required'),
+          faculty: Yup.string().required('Required'),
+          major: Yup.string().required('Required'),
+          accountType: Yup.string().required('Required')
+        })}
         onSubmit={handleSubmit}
       >
         <Form className="space-y-6">
