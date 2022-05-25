@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
-export default Dialog = ({ open, setOpen, children }) => {
+const BaseDialog = ({ open, setOpen, children }) => {
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10">
@@ -38,3 +38,5 @@ export default Dialog = ({ open, setOpen, children }) => {
     </Transition.Root>
   )
 }
+
+export default BaseDialog

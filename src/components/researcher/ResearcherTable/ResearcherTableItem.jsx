@@ -10,7 +10,7 @@ import {
   deleteResearcher
 } from '../../../store/actions/researcherActions'
 
-const UserTableItem = ({ researcher }) => {
+const ResearcherTableItem = ({ researcher }) => {
   const [openDialog, setOpenDialog] = useState(false)
   const dispatch = useDispatch()
 
@@ -76,4 +76,4 @@ const UserTableItem = ({ researcher }) => {
   )
 }
 
-export default UserTableItem
+export default ResearcherTableItem
