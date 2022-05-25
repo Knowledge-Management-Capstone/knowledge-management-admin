@@ -108,9 +108,16 @@ export const deleteResearcher = researcherId => async dispatch => {
   try {
     dispatch({ type: RESEARCHER_DELETE_REQUEST })
 
-    await axios.delete(`/api/users/${researcherId}`)
+    const { data } = await axios.delete(`/api/users/${researcherId}`)
+
+    console.log(data)
 
     dispatch({ type: RESEARCHER_DELETE_SUCCESS })
+    MySwal.fire({
+      icon: 'success',
+      title: 'Success',
+      text: 'User deleted successfully'
+    })
   } catch (error) {
     dispatch({
       type: RESEARCHER_DELETE_FAIL,
