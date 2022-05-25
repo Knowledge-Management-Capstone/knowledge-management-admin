@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 
-import Dialog from '../common/Dialog'
+import BaseDialog from '../common/BaseDialog'
 import BaseInput from '../generic/form/input/BaseInput'
 import BaseSelect from '../generic/form/input/BaseSelect'
 
@@ -24,7 +24,7 @@ const ResearcherEditDialog = ({ researcher, open, setOpen }) => {
   }
 
   return (
-    <Dialog open={open} setOpen={setOpen}>
+    <BaseDialog open={open} setOpen={setOpen}>
       <Formik
         initialValues={{
           fullName,
@@ -76,7 +76,7 @@ const ResearcherEditDialog = ({ researcher, open, setOpen }) => {
           </div>
         </Form>
       </Formik>
-    </Dialog>
+    </BaseDialog>
   )
 }
 

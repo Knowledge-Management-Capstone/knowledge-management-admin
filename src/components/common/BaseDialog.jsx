@@ -3,7 +3,7 @@ import { Dialog, Transition } from '@headlessui/react'
 
 const BaseDialog = ({ open, setOpen, children }) => {
   return (
-    <Transition.Root show={open} as={Fragment}>
+    <Transition.Root show={open} as={Fragment} onClose={() => setOpen(false)}>
       <Dialog as="div" className="relative z-10">
         <Transition.Child
           as={Fragment}
