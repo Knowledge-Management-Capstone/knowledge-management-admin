@@ -59,7 +59,7 @@ const ResearcherTableItem = ({ researcher }) => {
           )}
           <PencilAltIcon
             className="h-6 w-6 text-blue-500 hover:cursor-pointer hover:text-blue-700 hover:bg-black hover:bg-opacity-10"
-            onClick={setOpenDialog(true)}
+            onClick={() => setOpenDialog(true)}
           />
           <TrashIcon
             className="h-6 w-6 text-red-500 hover:cursor-pointer hover:text-red-700 hover:bg-black hover:bg-opacity-10"
