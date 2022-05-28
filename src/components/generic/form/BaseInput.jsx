@@ -4,7 +4,7 @@ const BaseInput = ({ label, ...props }) => {
   const [field, meta] = useField(props)
 
   return (
-    <div>
+    <div className="mt-3">
       <label
         htmlFor={props.id || props.name}
         className="block text-sm font-medium text-gray-700"
@@ -13,7 +13,7 @@ const BaseInput = ({ label, ...props }) => {
       </label>
       <div className="mt-1">
         <input
-          className="appearance-none block px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          className="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
           {...field}
           {...props}
         />
