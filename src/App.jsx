@@ -1,6 +1,5 @@
-import { useState } from 'react'
-import { Form, Formik } from 'formik'
-import * as Yup from 'yup'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 import { email, password } from './utils/validation'
 
@@ -21,6 +20,10 @@ const App = () => {
     setSubmitting(false)
     setOpen(false)
   }
+
+  useEffect(() => {
+    axios.get('/').then(res => console.log(res.data))
+  }, [])
 
   return (
     <div className="flex align-center justify-center h-screen">
