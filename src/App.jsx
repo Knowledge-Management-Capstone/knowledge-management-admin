@@ -2,9 +2,11 @@ import { useState } from 'react'
 import { Form, Formik } from 'formik'
 import * as Yup from 'yup'
 
-import BaseModal from './components/generic/modal/BaseModal'
-import BaseInput from './components/generic/form/BaseInput'
+import { email, password } from './utils/validation'
+
 import BaseButton from './components/generic/button/BaseButton'
+import BaseInput from './components/generic/form/BaseInput'
+import BaseModal from './components/generic/modal/BaseModal'
 
 const App = () => {
   const [open, setOpen] = useState(false)
@@ -26,12 +28,7 @@ const App = () => {
             email: '',
             password: ''
           }}
-          validationSchema={Yup.object({
-            email: Yup.string()
-              .email('Invalid email address')
-              .required('Required'),
-            password: Yup.string().required('Required')
-          })}
+          validationSchema={Yup.object({ email, password })}
           onSubmit={handleSubmit}
         >
           <Form>
