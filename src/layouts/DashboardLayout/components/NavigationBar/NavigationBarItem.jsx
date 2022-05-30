@@ -9,17 +9,14 @@ const NavigationBarItem = ({ name, path, icon: NavIcon }) => {
       key={name}
       to={path}
       className={clsx(
-        'group flex items-center px-2 py-2 text-base font-medium rounded-md',
+        'group flex items-center px-2 py-2 text-base font-medium rounded-md text-white hover:text-secondary',
         {
-          'bg-indigo-800 text-white': pathname === path,
-          'text-indigo-100 hover:bg-indigo-600': pathname !== path
+          'bg-primary hover:bg-accent': pathname !== path,
+          'bg-accent font-bold': pathname === path
         }
       )}
     >
-      <NavIcon
-        className="mr-4 flex-shrink-0 h-6 w-6 text-indigo-300"
-        aria-hidden="true"
-      />
+      <NavIcon className="mr-4 flex-shrink-0 h-6 w-6 " aria-hidden="true" />
       {name}
     </Link>
   )
