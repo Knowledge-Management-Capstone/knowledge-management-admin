@@ -12,15 +12,16 @@ const BaseTable = ({ header, children }) => {
                       <th
                         scope="col"
                         className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-6"
+                        key={h}
                       >
                         {h}
                       </th>
                     ))}
-                    <tbody className="divide-y divide-gray-200 bg-white">
-                      <tr>{children}</tr>
-                    </tbody>
                   </tr>
                 </thead>
+                <tbody className="divide-y divide-gray-200 bg-white">
+                  {children}
+                </tbody>
               </table>
             </div>
           </div>
