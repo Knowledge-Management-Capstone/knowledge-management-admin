@@ -57,12 +57,12 @@ const ResearcherTable = () => {
                 </span>
               </BaseTableItem>
               <BaseTableItem className="relative flex gap-2">
-                {/* {!r.isApproved && ( */}
-                <CheckIcon
-                  className="h-6 w-6 text-gray-400 rounded-md hover:cursor-pointer hover:text-green-700"
-                  onClick={() => handleApprove(r._id)}
-                />
-                {/* )} */}
+                {!r.isApproved && (
+                  <CheckIcon
+                    className="h-6 w-6 text-gray-400 rounded-md hover:cursor-pointer hover:text-green-700"
+                    onClick={() => handleApprove(r._id)}
+                  />
+                )}
                 <PencilAltIcon
                   className="h-6 w-6 text-gray-400 rounded-md hover:cursor-pointer hover:text-blue-700"
                   onClick={() => handleEdit(r)}
