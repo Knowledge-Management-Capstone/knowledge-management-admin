@@ -2,6 +2,7 @@ import BaseButton from '~/components/generic/button/BaseButton'
 import BaseForm from '~/components/generic/form/BaseForm'
 import BaseInput from '~/components/generic/form/BaseInput'
 import BaseModal from '~/components/generic/modal/BaseModal'
+import BaseSelect from '~/components/generic/form/BaseSelect'
 
 const FormModal = ({ title, open, setOpen, ...props }) => {
   return (
@@ -10,6 +11,10 @@ const FormModal = ({ title, open, setOpen, ...props }) => {
         <BaseInput label="Full Name" name="fullName" type="text" />
         <BaseInput label="Email" name="email" type="email" />
         <BaseInput label="Major" name="major" type="text" />
+        <BaseSelect label="Account Type" name="accountType">
+          <option value="lecturer">Lecturer</option>
+          <option value="student">Student</option>
+        </BaseSelect>
         <div className="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
           <BaseButton
             type="submit"
