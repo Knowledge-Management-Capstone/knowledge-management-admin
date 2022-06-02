@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import clsx from 'clsx'
 import {
   CheckIcon,
@@ -10,12 +10,14 @@ import {
 
 import BaseTable from '~/components/generic/table/BaseTable'
 import BaseTableItem from '~/components/generic/table/BaseTableItem'
+import ResearchEditModal from './ResearchEditModal'
 
 const header = ['Title', 'Faculty', 'Status', 'Actions']
 const research = [
   {
     _id: 1,
     title: 'Capstone Project',
+    description: 'Best project ever',
     faculty: 'Engineering',
     approval: 'approved',
     status: 'active'
@@ -23,6 +25,14 @@ const research = [
 ]
 
 const ResearchTable = () => {
+  const [openDialog, setOpenDialog] = useState(false)
+  const [selectedResearch, setSelectedResearch] = useState(null)
+
+  const handleEdit = r => {
+    setSelectedResearch(r)
+    setOpenDialog(true)
+  }
+
   return (
     <Fragment>
       <BaseTable header={header}>
@@ -63,7 +73,7 @@ const ResearchTable = () => {
                 )}
                 <PencilAltIcon
                   className="h-6 w-6 text-gray-400 rounded-md hover:cursor-pointer hover:text-blue-700"
-                  onClick={() => {}}
+                  onClick={() => handleEdit(r)}
                 />
                 <TrashIcon
                   className="h-6 w-6 text-gray-400 rounded-md hover:cursor-pointer hover:text-red-700"
@@ -77,6 +87,11 @@ const ResearchTable = () => {
             </tr>
           ))}
       </BaseTable>
+      <ResearchEditModal
+        open={openDialog}
+        setOpen={setOpenDialog}
+        initialValues={selectedResearch}
+      />
     </Fragment>
   )
 }
