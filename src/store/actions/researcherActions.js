@@ -69,7 +69,7 @@ export const approveResearcher = researcherId => async dispatch => {
   }
 }
 
-export const deleteResearcher = reseracherId => async dispatch => {
+export const deleteResearcher = researcherId => async dispatch => {
   try {
     dispatch({ type: RESEARCHER_DELETE_REQUEST })
 

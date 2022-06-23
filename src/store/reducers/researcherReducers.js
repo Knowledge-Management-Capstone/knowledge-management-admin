@@ -36,7 +36,7 @@ export const researcherApproveReducer = (state = {}, action) => {
   }
 }
 
-export const researchDeleteReducer = (state = {}, action) => {
+export const researcherDeleteReducer = (state = {}, action) => {
   switch (action.type) {
     case RESEARCHER_DELETE_REQUEST:
       return { loading: true }
