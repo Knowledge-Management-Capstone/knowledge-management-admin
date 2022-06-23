@@ -15,10 +15,9 @@ const Login = () => {
 
   const dispatch = useDispatch()
 
-  const handleSubmit = (values, { setSubmitting }) => {
+  const handleSubmit = values => {
     const { email, password } = values
     dispatch(login(email, password))
-    setSubmitting(false)
   }
 
   return (
