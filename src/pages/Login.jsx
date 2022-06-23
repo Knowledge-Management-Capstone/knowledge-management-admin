@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { LockClosedIcon } from '@heroicons/react/outline'
 
 import { email, password } from '~/utils/validation'
@@ -14,6 +15,14 @@ const Login = () => {
   const initialValues = { email: '', password: '', remember: false }
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const { user } = useSelector(state => state.userLogin)
+
+  useEffect(() => {
+    console.log(user)
+    if (user) navigate('/', { replace: true })
+  }, [user, navigate])
 
   const handleSubmit = values => {
     const { email, password } = values
