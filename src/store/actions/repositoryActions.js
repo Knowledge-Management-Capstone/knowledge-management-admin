@@ -11,7 +11,7 @@ export const repositoryList = () => async dispatch => {
 
     const { data } = await axios.get('/api/team')
 
-    dispatch({ type: FETCH_REPOSITORY_SUCCESS })
+    dispatch({ type: FETCH_REPOSITORY_SUCCESS, payload: data })
   } catch (error) {
     dispatch({
       type: FETCH_REPOSITORY_FAIL,
