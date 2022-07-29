@@ -32,7 +32,7 @@ export const respondRepository =
     try {
       dispatch({ type: RESPOND_REPOSITORY_REQUEST })
 
-      const { data } = axios.put(`/api/team/${id}?approve=${approve}`)
+      const { data } = axios.put(`/api/team/${id}/approve?value=${approve}`)
 
       dispatch({ type: RESPOND_REPOSITORY_SUCCESS, payload: data })
     } catch (error) {
