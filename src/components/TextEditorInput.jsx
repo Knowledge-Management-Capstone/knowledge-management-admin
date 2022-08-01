@@ -29,3 +29,5 @@ const TextEditorInput = ({ label, ...props }) => {
     </div>
   )
 }
+
+export default TextEditorInput
