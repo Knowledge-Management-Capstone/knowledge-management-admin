@@ -48,3 +48,13 @@ export const researcherDeleteReducer = (state = {}, action) => {
       return state
   }
 }
+
+/**
+ * 1. Fetch all researchers. TODO: implement filters
+ * 2. Approve a researcher
+ * 3. Delete a researcher
+ */
+export const researchers = (state = [], action) => {
+  switch (action.type) {
+  }
+}

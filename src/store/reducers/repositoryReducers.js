@@ -64,3 +64,15 @@ export const deleteRepositoryReducer = (state = {}, action) => {
       return state
   }
 }
+
+/**
+ * Cases:
+ * 1. Fetch all repositories. TODO: implement filters
+ * 2. Respond (approve/reject) to a repository
+ * 3. Update a repository
+ * 4. Delete a repository
+ */
+export const repositories = (state = [], action) => {
+  switch (action.type) {
+  }
+}

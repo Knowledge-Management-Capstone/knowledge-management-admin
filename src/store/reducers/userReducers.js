@@ -19,3 +19,12 @@ export const userLoginReducer = (state = {}, action) => {
       return state
   }
 }
+
+/**
+ * 1. User login
+ * 2. User logout
+ */
+export const user = (state = {}, action) => {
+  switch (action.type) {
+  }
+}
