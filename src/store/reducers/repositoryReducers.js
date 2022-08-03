@@ -72,20 +72,26 @@ export const deleteRepositoryReducer = (state = {}, action) => {
  * 3. Update a repository
  * 4. Delete a repository
  */
-export const repositoriesReducer = (state = [], action) => {
+export const repositoriesReducer = (
+  state = { loading: false, data: [] },
+  action
+) => {
   switch (action.type) {
     case 'LOADING_REPOSITORY': {
-      return { loading: true }
+      return { loading: true, data: [] }
     }
     case 'FETCH_REPOSITORY': {
-      return [...state, ...action.payload]
+      return { loading: false, data: [...state, action.payload] }
     }
     case 'UPDATE_REPOSITORY': {
       const repositories = state.filter(r => r._id !== action.payload._id)
-      return [...repositories, action.payload]
+      return { loading: false, data: [...repositories, action.payload] }
     }
     case 'DELETE_REPOSITORY': {
-      return state.filter(r => r._id !== action.payload._id)
+      return {
+        loading: false,
+        data: state.filter(r => r._id !== action.payload._id)
+      }
     }
     default:
       return state
