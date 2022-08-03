@@ -12,7 +12,8 @@ import {
 
 import {
   repositoryList,
-  respondRepository
+  respondRepository,
+  editRepository
 } from '~/store/actions/repositoryActions'
 
 import BaseTable from '~/components/generic/table/BaseTable'
@@ -45,8 +46,9 @@ const ResearchTable = () => {
     dispatch(respondRepository({ id, approve }))
   }
 
-  const handleSubmit = values => {
-    console.log(values)
+  const handleSubmit = ({ status, administrator, members, ...rest }) => {
+    dispatch(editRepository(rest))
+    setOpenDialog(false)
   }
 
   return (
