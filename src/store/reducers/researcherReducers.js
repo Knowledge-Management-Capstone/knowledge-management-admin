@@ -49,22 +49,30 @@ export const researcherDeleteReducer = (state = {}, action) => {
   }
 }
 
-/**
- * 1. Fetch all researchers. TODO: implement filters
+/**TODO: Try wether `loading` and `error` could be omitted
+ * 1. Fetch all researchers. TODO: Implement filters
  * 2. Approve a researcher
  * 3. Delete a researcher
+ * 4. Error researchers
  */
-export const researchers = (state = { loading: false, data: [] }, action) => {
+export const researchers = (
+  state = { loading: false, error: null, data: [] },
+  action
+) => {
   switch (action.type) {
     case 'LOADING_RESEARCHER': {
-      return { loading: true, data: [] }
+      return { loading: true, error: null, data: [] }
     }
     case 'FETCH_RESEARCHER': {
-      return { loading: false, data: action.payload }
+      return { loading: false, error: null, data: action.payload }
     }
     case 'UPDATE_RESEARCHER': {
       const researchers = state.data.filter(r => r._id !== action.payload._id)
-      return { loading: false, data: [...researchers, action.payload] }
+      return {
+        loading: false,
+        error: null,
+        data: [...researchers, action.payload]
+      }
     }
     case 'DELETE_RESEARCHER': {
       return {
@@ -72,5 +80,10 @@ export const researchers = (state = { loading: false, data: [] }, action) => {
         data: state.data.filter(r => r._id !== action.payload._id)
       }
     }
+    case 'ERROR_RESEARCHER': {
+      return { loading: false, error: action.payload, data: [...state.data] }
+    }
+    default:
+      return state
   }
 }
