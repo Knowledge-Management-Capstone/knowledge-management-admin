@@ -2,11 +2,12 @@ import { applyMiddleware, combineReducers, createStore } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
-import { userLoginReducer } from './reducers/userReducers'
+import { userLoginReducer, userReducer } from './reducers/userReducers'
 import {
   researcherListReducer,
   researcherApproveReducer,
-  researcherDeleteReducer
+  researcherDeleteReducer,
+  researchersReducer
 } from './reducers/researcherReducers'
 import {
   repositoryListReducer,
@@ -25,7 +26,9 @@ const reducer = combineReducers({
   respondRepository: respondRepositoryReducer,
   editRepository: editRepositoryReducer,
   deleteRepository: deleteRepositoryReducer,
-  repositories: repositoriesReducer
+  repositories: repositoriesReducer,
+  researchers: researchersReducer,
+  user: userReducer
 })
 
 const userFromStorage = localStorage.getItem('user-admin')

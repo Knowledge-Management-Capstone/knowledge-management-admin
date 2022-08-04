@@ -55,13 +55,13 @@ export const researcherDeleteReducer = (state = {}, action) => {
  * 3. Delete a researcher
  * 4. Error researchers
  */
-export const researchers = (
+export const researchersReducer = (
   state = { loading: false, error: null, data: [] },
   action
 ) => {
   switch (action.type) {
     case 'LOADING_RESEARCHER': {
-      return { loading: true, error: null, data: [] }
+      return { loading: true, error: null, data: state.data }
     }
     case 'FETCH_RESEARCHER': {
       return { loading: false, error: null, data: action.payload }

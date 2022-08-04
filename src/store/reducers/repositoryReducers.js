@@ -79,7 +79,7 @@ export const repositoriesReducer = (
 ) => {
   switch (action.type) {
     case 'LOADING_REPOSITORY': {
-      return { loading: true, error: null, data: [] }
+      return { loading: true, error: null, data: state.data }
     }
     case 'FETCH_REPOSITORY': {
       return {
