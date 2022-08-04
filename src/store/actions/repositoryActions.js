@@ -6,9 +6,12 @@ import {
   EDIT_REPOSITORY_FAIL,
   EDIT_REPOSITORY_REQUEST,
   EDIT_REPOSITORY_SUCCESS,
+  ERROR_REPOSITORY,
+  FETCH_REPOSITORY,
   FETCH_REPOSITORY_FAIL,
   FETCH_REPOSITORY_REQUEST,
   FETCH_REPOSITORY_SUCCESS,
+  LOADING_REPOSITORY,
   RESPOND_REPOSITORY_FAIL,
   RESPOND_REPOSITORY_REQUEST,
   RESPOND_REPOSITORY_SUCCESS
@@ -24,6 +27,24 @@ export const repositoryList = () => async dispatch => {
   } catch (error) {
     dispatch({
       type: FETCH_REPOSITORY_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+    })
+  }
+}
+
+export const fetchRepositories = () => async dispatch => {
+  try {
+    dispatch({ type: LOADING_REPOSITORY })
+
+    const { data } = await axios.get('/api/team')
+
+    dispatch({ type: FETCH_REPOSITORY, payload: data })
+  } catch (error) {
+    dispatch({
+      type: ERROR_REPOSITORY,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
