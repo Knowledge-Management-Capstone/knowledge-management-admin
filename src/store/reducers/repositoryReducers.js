@@ -85,7 +85,7 @@ export const repositoriesReducer = (
       return {
         loading: false,
         error: null,
-        data: [...state.data, action.payload]
+        data: action.payload
       }
     }
     case 'UPDATE_REPOSITORY': {

@@ -47,5 +47,7 @@ export const userReducer = (
     case 'USER_ERROR': {
       return { loading: false, error: action.payload, data: state.data }
     }
+    default:
+      return state
   }
 }
