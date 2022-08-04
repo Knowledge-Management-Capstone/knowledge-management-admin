@@ -100,7 +100,7 @@ export const repositoriesReducer = (
       return {
         loading: false,
         error: null,
-        data: state.data.filter(r => r._id !== action.payload._id)
+        data: state.data.filter(r => r._id !== action.payload)
       }
     }
     case 'ERROR_REPOSITORY': {
