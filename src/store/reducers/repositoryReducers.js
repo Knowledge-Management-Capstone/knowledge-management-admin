@@ -79,7 +79,7 @@ export const repositoriesReducer = (
 ) => {
   switch (action.type) {
     case 'LOADING_REPOSITORY': {
-      return { loading: true, error: null, data: state.data }
+      return { loading: true, error: null, data: [...state.data] }
     }
     case 'FETCH_REPOSITORY': {
       return {
@@ -89,22 +89,27 @@ export const repositoriesReducer = (
       }
     }
     case 'EDIT_REPOSITORY': {
-      const repositories = state.data.filter(r => r._id !== action.payload._id)
+      const data = state.data.map(r =>
+        r._id !== action.payload._id ? { ...r, ...action.payload } : r
+      )
+
       return {
         loading: false,
         error: null,
-        data: [...repositories, action.payload]
+        data
       }
     }
     case 'RESPOND_REPOSITORY': {
+      const data = state.data.map(r =>
+        r._id === action.payload.id
+          ? { ...r, status: action.payload.status }
+          : r
+      )
+
       return {
         loading: false,
         error: null,
-        data: state.data.filter(r =>
-          r._id === action.payload.id
-            ? { status: action.payload.status, ...r }
-            : r
-        )
+        data
       }
     }
     case 'DELETE_REPOSITORY': {
