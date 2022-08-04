@@ -54,7 +54,23 @@ export const researcherDeleteReducer = (state = {}, action) => {
  * 2. Approve a researcher
  * 3. Delete a researcher
  */
-export const researchers = (state = [], action) => {
+export const researchers = (state = { loading: false, data: [] }, action) => {
   switch (action.type) {
+    case 'LOADING_RESEARCHER': {
+      return { loading: true, data: [] }
+    }
+    case 'FETCH_RESEARCHER': {
+      return { loading: false, data: action.payload }
+    }
+    case 'UPDATE_RESEARCHER': {
+      const researchers = state.data.filter(r => r._id !== action.payload._id)
+      return { loading: false, data: [...researchers, action.payload] }
+    }
+    case 'DELETE_RESEARCHER': {
+      return {
+        loading: false,
+        data: state.data.filter(r => r._id !== action.payload._id)
+      }
+    }
   }
 }

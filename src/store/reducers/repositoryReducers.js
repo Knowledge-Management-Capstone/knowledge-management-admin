@@ -65,32 +65,49 @@ export const deleteRepositoryReducer = (state = {}, action) => {
   }
 }
 
-/**
+/** TODO: Try wether `loading` and `error` could be omitted
  * Cases:
- * 1. Fetch all repositories. TODO: implement filters
+ * 1. Fetch all repositories. TODO: Implement filters
  * 2. Respond (approve/reject) to a repository
  * 3. Update a repository
  * 4. Delete a repository
+ * 5. Error repository
  */
 export const repositoriesReducer = (
-  state = { loading: false, data: [] },
+  state = { loading: false, error: null, data: [] },
   action
 ) => {
   switch (action.type) {
     case 'LOADING_REPOSITORY': {
-      return { loading: true, data: [] }
+      return { loading: true, error: null, data: [] }
     }
     case 'FETCH_REPOSITORY': {
-      return { loading: false, data: [...state, action.payload] }
+      return {
+        loading: false,
+        error: null,
+        data: [...state.data, action.payload]
+      }
     }
     case 'UPDATE_REPOSITORY': {
-      const repositories = state.filter(r => r._id !== action.payload._id)
-      return { loading: false, data: [...repositories, action.payload] }
+      const repositories = state.data.filter(r => r._id !== action.payload._id)
+      return {
+        loading: false,
+        error: null,
+        data: [...repositories, action.payload]
+      }
     }
     case 'DELETE_REPOSITORY': {
       return {
         loading: false,
-        data: state.filter(r => r._id !== action.payload._id)
+        error: null,
+        data: state.data.filter(r => r._id !== action.payload._id)
+      }
+    }
+    case 'ERROR_REPOSITORY': {
+      return {
+        loading: false,
+        error: action.payload,
+        data: [...state.data]
       }
     }
     default:
