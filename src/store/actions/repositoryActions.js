@@ -13,6 +13,7 @@ import {
   FETCH_REPOSITORY_REQUEST,
   FETCH_REPOSITORY_SUCCESS,
   LOADING_REPOSITORY,
+  RESPOND_REPOSITORY,
   RESPOND_REPOSITORY_FAIL,
   RESPOND_REPOSITORY_REQUEST,
   RESPOND_REPOSITORY_SUCCESS
@@ -58,14 +59,15 @@ export const respondRepository =
   ({ id, approve }) =>
   async dispatch => {
     try {
-      dispatch({ type: RESPOND_REPOSITORY_REQUEST })
+      await axios.put(`/api/team/${id}/approve?value=${approve}`)
 
-      const { data } = axios.put(`/api/team/${id}/approve?value=${approve}`)
-
-      dispatch({ type: RESPOND_REPOSITORY_SUCCESS, payload: data })
+      dispatch({
+        type: RESPOND_REPOSITORY,
+        payload: { id, status: approve ? 'accepted' : 'rejected' }
+      })
     } catch (error) {
       dispatch({
-        type: RESPOND_REPOSITORY_FAIL,
+        type: ERROR_REPOSITORY,
         payload:
           error.response && error.response.data.message
             ? error.response.data.message
