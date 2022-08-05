@@ -77,7 +77,8 @@ export const researchersReducer = (
     case 'DELETE_RESEARCHER': {
       return {
         loading: false,
-        data: state.data.filter(r => r._id !== action.payload._id)
+        error: null,
+        data: state.data.filter(r => r._id !== action.payload)
       }
     }
     case 'ERROR_RESEARCHER': {

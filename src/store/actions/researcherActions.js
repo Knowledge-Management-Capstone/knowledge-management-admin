@@ -2,6 +2,8 @@ import axios from 'axios'
 import MySwal from '~/utils/sweetalert'
 
 import {
+  DELETE_RESEARCHER,
+  ERROR_RESEARCHER,
   FETCH_RESEARCHER,
   LOADING_RESEARCHER,
   RESEARCHER_APPROVE_FAIL,
@@ -52,13 +54,11 @@ export const approveResearcher = researcherId => async dispatch => {
   }
 }
 
-export const deleteResearcher = researcherId => async dispatch => {
+export const deleteResearcher = id => async dispatch => {
   try {
-    dispatch({ type: RESEARCHER_DELETE_REQUEST })
+    await axios.delete(`/api/users/${id}`)
 
-    await axios.delete(`/api/users/${researcherId}`)
-
-    dispatch({ type: RESEARCHER_DELETE_SUCCESS })
+    dispatch({ type: DELETE_RESEARCHER, payload: id })
     MySwal.fire({
       success: 'success',
       title: 'Success',
@@ -66,7 +66,7 @@ export const deleteResearcher = researcherId => async dispatch => {
     })
   } catch (error) {
     dispatch({
-      type: RESEARCHER_DELETE_FAIL,
+      type: ERROR_RESEARCHER,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

@@ -22,12 +22,6 @@ const ResearcherTable = () => {
   const dispatch = useDispatch()
 
   const { data: researchers } = useSelector(state => state.researchers)
-  const { success: successApprove } = useSelector(
-    state => state.researcherApprove
-  )
-  const { success: successDelete } = useSelector(
-    state => state.researcherDelete
-  )
 
   useEffect(() => {
     dispatch(fetchResearchers())
