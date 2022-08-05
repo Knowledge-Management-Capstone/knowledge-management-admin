@@ -89,8 +89,12 @@ export const repositoriesReducer = (
       }
     }
     case 'EDIT_REPOSITORY': {
+      const { _id, name, ...rest } = action.payload
+
       const data = state.data.map(r =>
-        r._id !== action.payload._id ? { ...r, ...action.payload } : r
+        r._id === _id
+          ? { ...r, _id, name, repository: { ...r.repository, ...rest } }
+          : r
       )
 
       return {
