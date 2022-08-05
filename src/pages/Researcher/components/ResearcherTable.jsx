@@ -25,7 +25,7 @@ const ResearcherTable = () => {
 
   useEffect(() => {
     dispatch(fetchResearchers())
-  }, [dispatch, successApprove, successDelete])
+  }, [dispatch])
 
   const handleApprove = id => {
     dispatch(approveResearcher(id))
