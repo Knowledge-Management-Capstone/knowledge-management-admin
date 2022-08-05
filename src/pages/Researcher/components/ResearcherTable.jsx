@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import { CheckIcon, PencilAltIcon, TrashIcon } from '@heroicons/react/outline'
 
 import {
-  researcherList,
+  fetchResearchers,
   approveResearcher,
   deleteResearcher
 } from '~/store/actions/researcherActions'
@@ -21,7 +21,7 @@ const ResearcherTable = () => {
 
   const dispatch = useDispatch()
 
-  const { researchers } = useSelector(state => state.researcherList)
+  const { data: researchers } = useSelector(state => state.researchers)
   const { success: successApprove } = useSelector(
     state => state.researcherApprove
   )
@@ -30,7 +30,7 @@ const ResearcherTable = () => {
   )
 
   useEffect(() => {
-    dispatch(researcherList())
+    dispatch(fetchResearchers())
   }, [dispatch, successApprove, successDelete])
 
   const handleApprove = id => {
