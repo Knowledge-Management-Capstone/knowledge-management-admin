@@ -9,23 +9,13 @@ import {
   researcherDeleteReducer,
   researchersReducer
 } from './reducers/researcherReducers'
-import {
-  repositoryListReducer,
-  respondRepositoryReducer,
-  editRepositoryReducer,
-  deleteRepositoryReducer,
-  repositoriesReducer
-} from './reducers/repositoryReducers'
+import { repositoriesReducer } from './reducers/repositoryReducers'
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
   researcherList: researcherListReducer,
   researcherApprove: researcherApproveReducer,
   researcherDelete: researcherDeleteReducer,
-  repositoryList: repositoryListReducer,
-  respondRepository: respondRepositoryReducer,
-  editRepository: editRepositoryReducer,
-  deleteRepository: deleteRepositoryReducer,
   repositories: repositoriesReducer,
   researchers: researchersReducer,
   user: userReducer

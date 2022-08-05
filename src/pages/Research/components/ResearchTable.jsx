@@ -11,7 +11,6 @@ import {
 } from '@heroicons/react/outline'
 
 import {
-  repositoryList,
   respondRepository,
   editRepository,
   deleteRepository,
@@ -33,7 +32,6 @@ const ResearchTable = () => {
   const { data: repositories } = useSelector(state => state.repositories)
 
   useEffect(() => {
-    dispatch(repositoryList())
     dispatch(fetchRepositories())
   }, [dispatch])
 
