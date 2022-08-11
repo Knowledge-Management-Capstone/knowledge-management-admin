@@ -2,15 +2,12 @@ import axios from 'axios'
 import MySwal from '~/utils/sweetalert'
 
 import {
+  APPROVE_RESEARCHER,
   DELETE_RESEARCHER,
+  EDIT_RESEARCHER,
   ERROR_RESEARCHER,
   FETCH_RESEARCHER,
-  LOADING_RESEARCHER,
-  RESEARCHER_APPROVE_FAIL,
-  RESEARCHER_APPROVE_REQUEST,
-  RESEARCHER_APPROVE_SUCCESS,
-  RESEARCHER_DELETE_REQUEST,
-  RESEARCHER_DELETE_SUCCESS
+  LOADING_RESEARCHER
 } from '../constants/researcherConstants'
 
 export const fetchResearchers = () => async dispatch => {
@@ -20,16 +17,38 @@ export const fetchResearchers = () => async dispatch => {
     const { data } = await axios.get('/api/user')
 
     dispatch({ type: FETCH_RESEARCHER, payload: data })
-  } catch (error) {}
+  } catch (error) {
+    dispatch({
+      type: ERROR_RESEARCHER,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+    })
+  }
 }
 
-export const approveResearcher = researcherId => async dispatch => {
+export const editResearcher = payload => async dispatch => {
   try {
-    dispatch({ type: RESEARCHER_APPROVE_REQUEST })
+    await axios.put(`/api/users/${payload._id}`, payload)
 
-    await axios.put(`/api/users/${researcherId}/approve`)
+    dispatch({ type: EDIT_RESEARCHER, payload })
+  } catch (error) {
+    dispatch({
+      type: ERROR_RESEARCHER,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+    })
+  }
+}
 
-    dispatch({ type: RESEARCHER_APPROVE_SUCCESS })
+export const approveResearcher = id => async dispatch => {
+  try {
+    await axios.put(`/api/users/${id}/approve`)
+
+    dispatch({ type: APPROVE_RESEARCHER, payload: id })
     MySwal.fire({
       icon: 'success',
       title: 'Success',
@@ -37,7 +56,7 @@ export const approveResearcher = researcherId => async dispatch => {
     })
   } catch (error) {
     dispatch({
-      type: RESEARCHER_APPROVE_FAIL,
+      type: ERROR_RESEARCHER,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

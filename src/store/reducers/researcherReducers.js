@@ -1,4 +1,5 @@
 import {
+  APPROVE_RESEARCHER,
   DELETE_RESEARCHER,
   EDIT_RESEARCHER,
   ERROR_RESEARCHER,
@@ -22,6 +23,12 @@ export const researchersReducer = (
     }
     case FETCH_RESEARCHER: {
       return { loading: false, error: null, data: action.payload }
+    }
+    case APPROVE_RESEARCHER: {
+      const data = state.data.map(r =>
+        r._id === action.payload ? { ...r, status: 'accepted' } : r
+      )
+      return { loading: false, error: null, data }
     }
     case EDIT_RESEARCHER: {
       const data = state.data.map(r =>
