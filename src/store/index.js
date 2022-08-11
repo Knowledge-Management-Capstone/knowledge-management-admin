@@ -3,19 +3,11 @@ import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 import { userLoginReducer, userReducer } from './reducers/userReducers'
-import {
-  researcherListReducer,
-  researcherApproveReducer,
-  researcherDeleteReducer,
-  researchersReducer
-} from './reducers/researcherReducers'
+import { researchersReducer } from './reducers/researcherReducers'
 import { repositoriesReducer } from './reducers/repositoryReducers'
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
-  researcherList: researcherListReducer,
-  researcherApprove: researcherApproveReducer,
-  researcherDelete: researcherDeleteReducer,
   repositories: repositoriesReducer,
   researchers: researchersReducer,
   user: userReducer
