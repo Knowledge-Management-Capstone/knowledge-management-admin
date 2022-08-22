@@ -12,7 +12,14 @@
     "format:check": "npx prettier --check './**/*.{js,jsx,ts,tsx,css,md}'",
     "format:fix": "npx prettier --write './**/*.{js,jsx,ts,tsx,css,md}'",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "./**/*.{js,jsx,ts,tsx,md}": [
+      "eslint",
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@headlessui/react": "^1.6.3",
@@ -50,7 +57,9 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-tailwindcss": "^3.6.0",
+    "husky": "^8.0.0",
     "jsdom": "^19.0.0",
+    "lint-staged": "^13.0.3",
     "postcss": "^8.4.14",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwind-css": "^1.5.0",
