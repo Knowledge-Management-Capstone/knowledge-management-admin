@@ -32,8 +32,7 @@ function ResearchTable() {
   const [openDialog, setOpenDialog] = useState(false);
   const [openRespondDialog, setOpenRespondDialog] = useState(false);
   const [openReviewDialog, setOpenReviewDialog] = useState(false);
-  // eslint-disable-next-line no-unused-vars
-  const [selectedResearch, setSelectedResearch] = useState(null);
+  const [selectedResearchId, setSelectedResearchId] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -63,6 +62,11 @@ function ResearchTable() {
 
   const handleDownload = (link) => {
     window.open(link);
+  };
+
+  const handleRespond = (id) => {
+    setSelectedResearchId(id);
+    setOpenRespondDialog(true);
   };
 
   const handleSubmit = ({ status, administrator, members, ...rest }) => {
@@ -117,7 +121,7 @@ function ResearchTable() {
                 ) : (
                   <ReplyIcon
                     className="h-6 w-6 rounded-md text-gray-400 hover:cursor-pointer hover:text-blue-700"
-                    onClick={() => setOpenRespondDialog(true)}
+                    onClick={() => handleRespond(r._id)}
                   />
                 )}
 
@@ -143,12 +147,13 @@ function ResearchTable() {
       <ResearchEditModal
         open={openDialog}
         setOpen={setOpenDialog}
-        initialValues={selectedResearch}
+        initialValues={selectedResearchId}
         handleSubmit={handleSubmit}
       />
       <ResearchRespondModal
         open={openRespondDialog}
         setOpen={setOpenRespondDialog}
+        selectedResearchId={selectedResearchId}
       />
       <ResearchReviewModal
         open={openReviewDialog}
